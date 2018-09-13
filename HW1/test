@@ -1,0 +1,78 @@
+#! /usr/bin/vvp
+:ivl_version "10.1 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x5608f0feb4a0 .scope module, "demorgan_test" "demorgan_test" 2 3;
+ .timescale 0 0;
+v0x5608f100e4a0_0 .var "A", 0 0;
+v0x5608f100e560_0 .var "B", 0 0;
+v0x5608f100e600_0 .net "nA", 0 0, L_0x5608f0fe59e0;  1 drivers
+v0x5608f100e700_0 .net "nAandB", 0 0, L_0x5608f100ece0;  1 drivers
+v0x5608f100e7d0_0 .net "nAandnB", 0 0, L_0x5608f100ec20;  1 drivers
+v0x5608f100e870_0 .net "nAorB", 0 0, L_0x5608f100ee90;  1 drivers
+v0x5608f100e940_0 .net "nAornB", 0 0, L_0x5608f100edd0;  1 drivers
+v0x5608f100ea10_0 .net "nB", 0 0, L_0x5608f0fe5a50;  1 drivers
+S_0x5608f0feb620 .scope module, "dut" "demorgan" 2 9, 3 1 0, S_0x5608f0feb4a0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A"
+    .port_info 1 /INPUT 1 "B"
+    .port_info 2 /OUTPUT 1 "nA"
+    .port_info 3 /OUTPUT 1 "nB"
+    .port_info 4 /OUTPUT 1 "nAandnB"
+    .port_info 5 /OUTPUT 1 "nAandB"
+    .port_info 6 /OUTPUT 1 "nAorB"
+    .port_info 7 /OUTPUT 1 "nAornB"
+L_0x5608f0fe59e0 .functor NOT 1, v0x5608f100e4a0_0, C4<0>, C4<0>, C4<0>;
+L_0x5608f0fe5a50 .functor NOT 1, v0x5608f100e560_0, C4<0>, C4<0>, C4<0>;
+L_0x5608f100ec20 .functor AND 1, L_0x5608f0fe59e0, L_0x5608f0fe5a50, C4<1>, C4<1>;
+L_0x5608f100ece0 .functor NAND 1, v0x5608f100e4a0_0, v0x5608f100e560_0, C4<1>, C4<1>;
+L_0x5608f100edd0 .functor OR 1, L_0x5608f0fe59e0, L_0x5608f0fe5a50, C4<0>, C4<0>;
+L_0x5608f100ee90 .functor NOR 1, v0x5608f100e4a0_0, v0x5608f100e560_0, C4<0>, C4<0>;
+v0x5608f0fe9270_0 .net "A", 0 0, v0x5608f100e4a0_0;  1 drivers
+v0x5608f0fe9310_0 .net "B", 0 0, v0x5608f100e560_0;  1 drivers
+v0x5608f100dea0_0 .net "nA", 0 0, L_0x5608f0fe59e0;  alias, 1 drivers
+v0x5608f100df40_0 .net "nAandB", 0 0, L_0x5608f100ece0;  alias, 1 drivers
+v0x5608f100e000_0 .net "nAandnB", 0 0, L_0x5608f100ec20;  alias, 1 drivers
+v0x5608f100e110_0 .net "nAorB", 0 0, L_0x5608f100ee90;  alias, 1 drivers
+v0x5608f100e1d0_0 .net "nAornB", 0 0, L_0x5608f100edd0;  alias, 1 drivers
+v0x5608f100e290_0 .net "nB", 0 0, L_0x5608f0fe5a50;  alias, 1 drivers
+    .scope S_0x5608f0feb4a0;
+T_0 ;
+    %vpi_call 2 13 "$display", "A B | ~A ~B | ~(AB) | (~A+~B) | ~(A+B) | (~A~B)  " {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5608f100e4a0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5608f100e560_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 15 "$display", "%b %b |  %b %b  |   %b   |    %b    |   %b    |   %b   ", v0x5608f100e4a0_0, v0x5608f100e560_0, v0x5608f100e600_0, v0x5608f100ea10_0, v0x5608f100e700_0, v0x5608f100e940_0, v0x5608f100e870_0, v0x5608f100e7d0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5608f100e4a0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5608f100e560_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 17 "$display", "%b %b |  %b %b  |   %b   |    %b    |   %b    |   %b   ", v0x5608f100e4a0_0, v0x5608f100e560_0, v0x5608f100e600_0, v0x5608f100ea10_0, v0x5608f100e700_0, v0x5608f100e940_0, v0x5608f100e870_0, v0x5608f100e7d0_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5608f100e4a0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5608f100e560_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 19 "$display", "%b %b |  %b %b  |   %b   |    %b    |   %b    |   %b   ", v0x5608f100e4a0_0, v0x5608f100e560_0, v0x5608f100e600_0, v0x5608f100ea10_0, v0x5608f100e700_0, v0x5608f100e940_0, v0x5608f100e870_0, v0x5608f100e7d0_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5608f100e4a0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5608f100e560_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 21 "$display", "%b %b |  %b %b  |   %b   |    %b    |   %b    |   %b   ", v0x5608f100e4a0_0, v0x5608f100e560_0, v0x5608f100e600_0, v0x5608f100ea10_0, v0x5608f100e700_0, v0x5608f100e940_0, v0x5608f100e870_0, v0x5608f100e7d0_0 {0 0 0};
+    %vpi_call 2 22 "$display", "Since for all inputs A and B, ~(AB) and (~A+~B) have the same outputs, they must be equal. Similarly, since ~(A+B) and (~A~B) have the same outputs for each input A and B, they are also equal to each other." {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "hw1.t.v";
+    "./hw1.v";

@@ -1,0 +1,39 @@
+#! /usr/bin/vvp
+:ivl_version "10.1 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x56430fb5f4d0 .scope module, "demorgan" "demorgan" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A"
+    .port_info 1 /INPUT 1 "B"
+    .port_info 2 /OUTPUT 1 "nA"
+    .port_info 3 /OUTPUT 1 "nB"
+    .port_info 4 /OUTPUT 1 "nAandnB"
+    .port_info 5 /OUTPUT 1 "nAandB"
+    .port_info 6 /OUTPUT 1 "nAorB"
+    .port_info 7 /OUTPUT 1 "nAornB"
+o0x7f362239d018 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x56430fb7fd60 .functor NOT 1, o0x7f362239d018, C4<0>, C4<0>, C4<0>;
+o0x7f362239d048 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x56430fb7fe20 .functor NOT 1, o0x7f362239d048, C4<0>, C4<0>, C4<0>;
+L_0x56430fb7fef0 .functor AND 1, L_0x56430fb7fd60, L_0x56430fb7fe20, C4<1>, C4<1>;
+L_0x56430fb7ffe0 .functor NAND 1, o0x7f362239d018, o0x7f362239d048, C4<1>, C4<1>;
+L_0x56430fb80120 .functor OR 1, L_0x56430fb7fd60, L_0x56430fb7fe20, C4<0>, C4<0>;
+L_0x56430fb80190 .functor NOR 1, o0x7f362239d018, o0x7f362239d048, C4<0>, C4<0>;
+v0x56430fb5f720_0 .net "A", 0 0, o0x7f362239d018;  0 drivers
+v0x56430fb7f6a0_0 .net "B", 0 0, o0x7f362239d048;  0 drivers
+v0x56430fb7f760_0 .net "nA", 0 0, L_0x56430fb7fd60;  1 drivers
+v0x56430fb7f800_0 .net "nAandB", 0 0, L_0x56430fb7ffe0;  1 drivers
+v0x56430fb7f8c0_0 .net "nAandnB", 0 0, L_0x56430fb7fef0;  1 drivers
+v0x56430fb7f9d0_0 .net "nAorB", 0 0, L_0x56430fb80190;  1 drivers
+v0x56430fb7fa90_0 .net "nAornB", 0 0, L_0x56430fb80120;  1 drivers
+v0x56430fb7fb50_0 .net "nB", 0 0, L_0x56430fb7fe20;  1 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "hw1.v";

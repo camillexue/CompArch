@@ -1,0 +1,8 @@
+A B | ~A ~B | ~(AB) | (~A+~B) | ~(A+B) | (~A~B)
+0 0 |  1 1  |   1   |    1    |   1    |   1
+0 1 |  1 0  |   1   |    1    |   0    |   0
+1 0 |  0 1  |   1   |    1    |   0    |   0
+1 1 |  0 0  |   0   |    0    |   0    |   0
+Since for all inputs A and B, ~(AB) and (~A+~B) have the same outputs,
+they must be equal. Similarly, since ~(A+B) and (~A~B) have the same outputs
+for each input A and B, they are also equal to each other.
