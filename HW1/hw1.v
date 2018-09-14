@@ -5,7 +5,7 @@ module demorgan
   output nA, //output itermediate complemented inputs
   output nB,
   output nAandnB, // single bit output, (~A)*(~B)
-  output nAandB, // (~(AB))
+  output AnandB, // (~(AB))
   output nAorB, // (~(A + B))
   output nAornB // ((~A)+(~B))
 );
@@ -16,7 +16,7 @@ module demorgan
   not Binv(nB, B);
 
   and andgate(nAandnB, nA, nB);  // AND gate produces nAandnB from nA and nB
-  nand nandgate(nAandB, A, B);  // NAND gate produces nAandB from A and B
+  nand nandgate(AnandB, A, B);  // NAND gate produces nAandB from A and B
   or orgate(nAornB, nA, nB);  // OR gate produces nAornB from nA and nB
   nor norgate(nAorB, A, B); // NOR gate produces nAorB from A and B
 endmodule
