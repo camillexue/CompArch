@@ -1,0 +1,156 @@
+#! /usr/local/bin/vvp
+:ivl_version "10.1 (stable)" "(v10_1-107-gab6ae79)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x2332c90 .scope module, "behavioralDecoder" "behavioralDecoder" 2 6;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 1 "out0"
+    .port_info 1 /OUTPUT 1 "out1"
+    .port_info 2 /OUTPUT 1 "out2"
+    .port_info 3 /OUTPUT 1 "out3"
+    .port_info 4 /INPUT 1 "address0"
+    .port_info 5 /INPUT 1 "address1"
+    .port_info 6 /INPUT 1 "enable"
+v0x2335a30_0 .net *"_s11", 3 0, L_0x2355fc0;  1 drivers
+v0x2353ec0_0 .net *"_s5", 3 0, L_0x2355db0;  1 drivers
+L_0x7f647b657018 .functor BUFT 1, C4<000>, C4<0>, C4<0>, C4<0>;
+v0x2353fa0_0 .net *"_s8", 2 0, L_0x7f647b657018;  1 drivers
+v0x2354090_0 .net *"_s9", 1 0, L_0x2355ee0;  1 drivers
+o0x7f647b6a00d8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x2354170_0 .net "address0", 0 0, o0x7f647b6a00d8;  0 drivers
+o0x7f647b6a0108 .functor BUFZ 1, C4<z>; HiZ drive
+v0x2354280_0 .net "address1", 0 0, o0x7f647b6a0108;  0 drivers
+o0x7f647b6a0138 .functor BUFZ 1, C4<z>; HiZ drive
+v0x2354340_0 .net "enable", 0 0, o0x7f647b6a0138;  0 drivers
+v0x2354400_0 .net "out0", 0 0, L_0x2355c20;  1 drivers
+v0x23544c0_0 .net "out1", 0 0, L_0x2355b80;  1 drivers
+v0x2354610_0 .net "out2", 0 0, L_0x2355a60;  1 drivers
+v0x23546d0_0 .net "out3", 0 0, L_0x2355960;  1 drivers
+L_0x2355960 .part L_0x2355fc0, 3, 1;
+L_0x2355a60 .part L_0x2355fc0, 2, 1;
+L_0x2355b80 .part L_0x2355fc0, 1, 1;
+L_0x2355c20 .part L_0x2355fc0, 0, 1;
+L_0x2355db0 .concat [ 1 3 0 0], o0x7f647b6a0138, L_0x7f647b657018;
+L_0x2355ee0 .concat [ 1 1 0 0], o0x7f647b6a00d8, o0x7f647b6a0108;
+L_0x2355fc0 .shift/l 4, L_0x2355db0, L_0x2355ee0;
+S_0x2332ec0 .scope module, "testDecoder" "testDecoder" 3 5;
+ .timescale -9 -12;
+v0x23553c0_0 .var "addr0", 0 0;
+v0x2355480_0 .var "addr1", 0 0;
+v0x2355550_0 .var "enable", 0 0;
+v0x2355650_0 .net "out0", 0 0, L_0x2356370;  1 drivers
+v0x2355720_0 .net "out1", 0 0, L_0x23565c0;  1 drivers
+v0x23557c0_0 .net "out2", 0 0, L_0x2356720;  1 drivers
+v0x2355890_0 .net "out3", 0 0, L_0x2356910;  1 drivers
+S_0x23548b0 .scope module, "decoder" "structuralDecoder" 3 11, 2 17 0, S_0x2332ec0;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 1 "out0"
+    .port_info 1 /OUTPUT 1 "out1"
+    .port_info 2 /OUTPUT 1 "out2"
+    .port_info 3 /OUTPUT 1 "out3"
+    .port_info 4 /INPUT 1 "I0"
+    .port_info 5 /INPUT 1 "I1"
+    .port_info 6 /INPUT 1 "enable"
+L_0x2356100/d .functor NOT 1, v0x23553c0_0, C4<0>, C4<0>, C4<0>;
+L_0x2356100 .delay 1 (50000,50000,50000) L_0x2356100/d;
+L_0x2356210/d .functor NOT 1, v0x2355480_0, C4<0>, C4<0>, C4<0>;
+L_0x2356210 .delay 1 (50000,50000,50000) L_0x2356210/d;
+L_0x2356370/d .functor AND 1, L_0x2356100, L_0x2356210, v0x2355550_0, C4<1>;
+L_0x2356370 .delay 1 (50000,50000,50000) L_0x2356370/d;
+L_0x23565c0/d .functor AND 1, v0x23553c0_0, L_0x2356210, v0x2355550_0, C4<1>;
+L_0x23565c0 .delay 1 (50000,50000,50000) L_0x23565c0/d;
+L_0x2356720/d .functor AND 1, L_0x2356100, v0x2355480_0, v0x2355550_0, C4<1>;
+L_0x2356720 .delay 1 (50000,50000,50000) L_0x2356720/d;
+L_0x2356910/d .functor AND 1, v0x23553c0_0, v0x2355480_0, v0x2355550_0, C4<1>;
+L_0x2356910 .delay 1 (50000,50000,50000) L_0x2356910/d;
+v0x2354b00_0 .net "I0", 0 0, v0x23553c0_0;  1 drivers
+v0x2354be0_0 .net "I1", 0 0, v0x2355480_0;  1 drivers
+v0x2354ca0_0 .net "enable", 0 0, v0x2355550_0;  1 drivers
+v0x2354d40_0 .net "nI0", 0 0, L_0x2356100;  1 drivers
+v0x2354e00_0 .net "nI1", 0 0, L_0x2356210;  1 drivers
+v0x2354f10_0 .net "out0", 0 0, L_0x2356370;  alias, 1 drivers
+v0x2354fd0_0 .net "out1", 0 0, L_0x23565c0;  alias, 1 drivers
+v0x2355090_0 .net "out2", 0 0, L_0x2356720;  alias, 1 drivers
+v0x2355150_0 .net "out3", 0 0, L_0x2356910;  alias, 1 drivers
+    .scope S_0x2332ec0;
+T_0 ;
+    %vpi_call 3 14 "$dumpfile", "decoder.vcd" {0 0 0};
+    %vpi_call 3 15 "$dumpvars" {0 0 0};
+    %vpi_call 3 16 "$display", "En A0 A1| O0 O1 O2 O3 | Expected Output" {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 18 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 20 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 22 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 24 "$display", "%b  %b  %b |  %b  %b  %b  %b | All false", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 26 "$display", "%b  %b  %b |  %b  %b  %b  %b | O0 Only", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 28 "$display", "%b  %b  %b |  %b  %b  %b  %b | O1 Only", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 30 "$display", "%b  %b  %b |  %b  %b  %b  %b | O2 Only", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355550_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x23553c0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2355480_0, 0, 1;
+    %delay 1000000, 0;
+    %vpi_call 3 32 "$display", "%b  %b  %b |  %b  %b  %b  %b | O3 Only", v0x2355550_0, v0x23553c0_0, v0x2355480_0, v0x2355650_0, v0x2355720_0, v0x23557c0_0, v0x2355890_0 {0 0 0};
+    %vpi_call 3 33 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "./decoder.v";
+    "decoder.t.v";
